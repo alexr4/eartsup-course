@@ -9,12 +9,12 @@ void draw()
 {
   background(255);
   fill(255);
-  
-  for(int i=0; i<width; i+=40)
+
+  for (int i=0; i<width; i+=40)
   {
-    if(i > width/3*2)
+    if (i > width/3*2)
     {
-      fill(0,0,255);
+      fill(0, 0, 255);
     }
     else if(i > width/3)
     {
@@ -24,6 +24,7 @@ void draw()
     {
       fill(255,0,0);
     }
+
     ellipse(i+15, height/2, 30, 30);
   }
 }
