@@ -1,4 +1,4 @@
-int sWidth = 600;
+int sWidth = 400;
 int sHeight = sWidth*2;
 float r, y, x, resRadius, resY, rInc, rOff, xInc, xOff, rGlobal, rgInc, rgOff;
 
@@ -26,6 +26,7 @@ void setup()
 void draw()
 {
   //background(255);
+  
   if (y >= -100)
   {
     y-= resY;
@@ -34,7 +35,6 @@ void draw()
     xInc += xOff;
     rgInc += rgOff;
   }
-  
   
   noFill();
   stroke(0, 0, 0, 50);
