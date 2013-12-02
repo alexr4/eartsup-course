@@ -30,6 +30,6 @@ void draw()
   textAlign(CENTER);
   text(monTimer.getRemainingTime(), width/2, height/2);
 
-  println(monTimer.getRemainingTime());
+  //println(monTimer.getRemainingTime());
 }
 

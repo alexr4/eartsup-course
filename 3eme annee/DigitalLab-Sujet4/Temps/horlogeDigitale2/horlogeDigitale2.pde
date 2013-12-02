@@ -6,6 +6,8 @@ int hauteur;
 int margeL;
 int margeH;
 
+PFont dsb;
+
 void setup()
 {
   size(sWidth, sHeight, P2D);
@@ -14,18 +16,19 @@ void setup()
   hauteur = 10;
   margeL = 100;
   margeH = 40;
+  
+  dsb = loadFont("dsb.vlw");
 }
 
 void draw()
 {
   background(0);
-  textSize(30);
-
+  textFont(dsb);
   textAlign(RIGHT);
-  text(hour()+" : "+minute()+" : "+second()+" : "+millis(), width/2-20, height/2);
+  text(hour()+" : "+minute()+" : "+second()+" : "+millis(), width/2-55, height/2);
 
   textAlign(LEFT);
-  text(day()+" / "+month()+" / "+year(), width/2+20, height/2);
+  text(day()+" / "+month()+" / "+year(), width/2+100, height/2);
 
   noStroke();
   rectMode(CENTER);

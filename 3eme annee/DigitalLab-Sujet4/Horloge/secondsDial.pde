@@ -1,28 +1,29 @@
 class secondsDial
 {
   //variables
-
+  float posX, posY;
   float radius;
   ArrayList<Point> points;
   int countCycle;
-  int millis;
-  int millisLimite;
+  int secondes;
+  int secondesLimite;
 
   //constructeur
-  secondsDial(float radius_)
+  secondsDial(float radius_, float posX_, float posY_)
   {
+    posX = posX_;
+    posY = posY_;
     radius = radius_;
     countCycle = 0;
-    millis = 0;
-    millisLimite = millis()+60000;
+    secondes = 0;
+    secondesLimite = millis()+60000;
 
     points = new ArrayList<Point>();
-    
   }
 
   void run()
   {
-    updateMillis();
+    updateSeconde();
     update();
     display();
   }
@@ -31,29 +32,27 @@ class secondsDial
   {
     if (!cycle())
     {
-      for (int i=0; i<60; i++)
-      {
-        float theta = map(i, 0, 59, 0, 360);
-        float x = radius*cos(radians(theta));
-        float y = radius*sin(radians(theta));
 
-        if (millis == i)
-        {
-          points.add(new Point(x, y));
-        }
+      float theta = map(secondes, 0, 60, 0, 360);
+      float x = radius*cos(radians(theta))+posX;
+      float y = radius*sin(radians(theta))+posY;
+
+      if (points.size()-1 != secondes)
+      {
+        points.add(new Point(x, y));
       }
     }
   }
-  
-  void updateMillis()
+
+  void updateSeconde()
   {
-    if(millis()<=millisLimite)
+    if (millis()<=secondesLimite)
     {
-      millis = int(map(millis(), millisLimite-60000, millisLimite, 0, 59));
+      secondes = int(map(millis(), secondesLimite-60000, secondesLimite, 0, 60));
     }
     else
     {
-      millis = 59;
+      secondes = 60;
     }
   }
 
@@ -61,7 +60,7 @@ class secondsDial
   {
     if (countCycle == 0)
     {
-      if (millis >= 58)
+      if (secondes >= 60)
       {
         countCycle = 1;
         return true;
@@ -82,8 +81,6 @@ class secondsDial
     for (int i = 0; i<points.size(); i++)
     {
       Point p = points.get(i);
-      float newRgb = map(i, 0, points.size(), 200, 0);
-      p.rgb = newRgb;
       p.run();
     }
   }

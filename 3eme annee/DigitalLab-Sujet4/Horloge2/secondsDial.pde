@@ -28,33 +28,30 @@ class secondsDial
     display();
   }
 
-  void update()
+   void update()
   {
     if (!cycle())
     {
-      for (int i=0; i<60; i++)
-      {
-        float theta = map(i, 0, 59, 0, 360);
-        float x = radius*cos(radians(theta));
-        float y = radius*sin(radians(theta));
 
-        if (millis == i)
-        {
-          points.add(new Point(x, y));
-        }
+      float theta = map(millis, 0, 60, 0, 360);
+      float x = radius*cos(radians(theta));
+      float y = radius*sin(radians(theta));
+
+      if (points.size()-1 != millis)
+      {
+        points.add(new Point(x, y));
       }
     }
   }
-
   void updateMillis()
   {
     if (millis()<=millisLimite)
     {
-      millis = int(map(millis(), millisLimite-60000, millisLimite, 0, 59));
+      millis = int(map(millis(), millisLimite-60000, millisLimite, 0, 60));
     }
     else
     {
-      millis = 59;
+      millis = 60;
     }
   }
 
@@ -62,7 +59,7 @@ class secondsDial
   {
     if (countCycle == 0)
     {
-      if (millis >= 58)
+      if (millis >= 60)
       {
         countCycle = 1;
         return true;
@@ -85,11 +82,27 @@ class secondsDial
     for (int i = 0; i<points.size(); i++)
     {
       Point p = points.get(i);
-      //float newRgb = map(i, 0, points.size(), 50, 255);
-      //p.rgb = newRgb;
+      float newRgb = map(i, 0, points.size(), 50, 255);
+      if (!cycle())
+      {
+        p.rgb = newRgb;
+        drawSecondHand();
+      }
+      else
+      {
+        p.rgb = 50;
+      }
       p.run();
     }
     popMatrix();
+  }
+  
+  void drawSecondHand()
+  {
+    pushStyle();
+    stroke(255);
+    line(0,0,0, points.get(points.size()-1).x, points.get(points.size()-1).y, 0);
+    popStyle();
   }
 }
 

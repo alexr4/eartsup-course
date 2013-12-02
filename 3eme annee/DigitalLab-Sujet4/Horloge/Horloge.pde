@@ -1,4 +1,4 @@
-int sWidth = 800;
+int sWidth = 700;
 int sHeight = sWidth/2;
 
 ArrayList<secondsDial> mySD;
@@ -10,7 +10,7 @@ void setup()
   smooth(8);
 
   mySD = new ArrayList<secondsDial>();
-  mySD.add(new secondsDial(50));
+  mySD.add(new secondsDial(50, width/2, height/2));
 }
 
 void draw()
@@ -28,9 +28,10 @@ void draw()
   
   if(mySD.get(lastElement).cycle())
   {
-    println("newElements");
+    //println("newElements");
     float newRadius = mySD.get(lastElement).radius+10;
-    mySD.add(new secondsDial(newRadius));
+    //println(mySD.get(lastElement).points.size());
+    mySD.add(new secondsDial(newRadius, width/2, height/2));
     lastElement = mySD.size()-1;
   }
   

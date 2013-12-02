@@ -21,8 +21,8 @@ class Point
   
   void display()
   {
+    fill(127);
     noStroke();
-    stroke(rgb);
     ellipse(x, y, taille, taille);
   }
 }

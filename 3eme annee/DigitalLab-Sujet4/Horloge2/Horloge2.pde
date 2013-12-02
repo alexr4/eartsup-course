@@ -37,9 +37,9 @@ void draw()
   if(mySD.get(lastElement).cycle())
   {
     println("newElements");
-    //float newRadius = mySD.get(lastElement).radius+10;
+    float newRadius = mySD.get(lastElement).radius+10;
     float z = mySD.get(lastElement).z+10;
-    mySD.add(new secondsDial(60, z));
+    mySD.add(new secondsDial(newRadius, 0));
     lastElement = mySD.size()-1;
   }
   
