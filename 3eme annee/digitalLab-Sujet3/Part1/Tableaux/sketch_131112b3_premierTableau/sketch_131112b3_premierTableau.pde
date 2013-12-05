@@ -1,7 +1,7 @@
 float[] couleur;
 int nbEllipse;
 char[] touche = {
-  'a', 'z', 'e'
+  'c', 'v', 'b'
 };
 
 void setup()
