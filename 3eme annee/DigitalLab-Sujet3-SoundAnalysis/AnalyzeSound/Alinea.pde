@@ -30,7 +30,7 @@ class Alinea
     timerBegin.start();
 
     //tempsTimerColor
-    tempsTimerColor = 11000;
+    tempsTimerColor = 13000;
     timerColor = new Timer(tempsTimerColor);
     changeColor = false;
 
