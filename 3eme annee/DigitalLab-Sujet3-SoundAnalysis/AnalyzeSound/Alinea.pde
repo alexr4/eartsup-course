@@ -45,7 +45,7 @@ class Alinea
   {
     calculateSequence();
 
-    display();
+    display2();
   }
 
   void calculateSequence()
@@ -89,9 +89,26 @@ class Alinea
     {
     }
   }
+  
+  void display2()
+  {
+    for(int i=0; i<pt.size(); i++)
+    {
+      PointObject pts = pt.get(i);
+      float tailleFFT = fftObj.getFFTLevel(i);
+      
+      pts.taille = map(tailleFFT, 0, 100, 5, 30);
+      pts.hue = map(tailleFFT, 0, 100, 0, 360);
+      pts.sat = 100;
+      pts.bright = 100;
+      
+      pts.run();
+    }
+  }
 
   void display()
   {
+    noFill();
     for (int i=0; i<pt.size(); i++)
     {
       PointObject myPt0 = pt.get(i);
@@ -109,7 +126,7 @@ class Alinea
         {
           if (pt.size() >= nbTotalElement)
           {
-            float strokeWeightFFT = map(FFTLevel, 0, 100, 1, 20);
+            float strokeWeightFFT = map(FFTLevel, 0, 100, 1, 10);
             strokeWeight(strokeWeightFFT);
           }
           else
@@ -129,23 +146,26 @@ class Alinea
             for (int k = 0; k<10; k++)
             {
               float marge = map(FFTLevel, 0, 100, 0, 50);
-              line(myPt0.x, myPt0.y-(marge*k), myPt1.x, myPt1.y-(marge*k));
+              //line(myPt0.x, myPt0.y-(marge*k), myPt1.x, myPt1.y-(marge*k));
+               bezier(myPt0.x,  myPt0.y-(marge*k), myPt0.x+(distance/2),  myPt0.y-(marge*k), myPt1.x-(distance/2), myPt1.y-(marge*k), myPt1.x, myPt1.y-(marge*k));
             }
           }
 
 
-          line(myPt0.x, myPt0.y, myPt1.x, myPt1.y);
+         // line(myPt0.x, myPt0.y, myPt1.x, myPt1.y);
+          bezier(myPt0.x, myPt0.y, myPt0.x+(distance/2), myPt0.y, myPt1.x-(distance/2), myPt1.y, myPt1.x, myPt1.y);
         }
       }
       if (pt.size() >= nbTotalElement)
       {
-        //myPt0.run();
+       //myPt0.run();
         myPt0.y = height/2-FFTLevel;
       }
       else
       {
       }
     }
+    
   }
 }
 

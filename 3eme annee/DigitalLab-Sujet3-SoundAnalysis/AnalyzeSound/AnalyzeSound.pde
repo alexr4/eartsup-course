@@ -26,7 +26,7 @@ void draw()
   alinea01.run();
   
   //debug
-  //fftObj.displayFFT(20, height-30, 1, 10, 30);//fftObj.fft.specSize()/3
+  fftObj.displayFFT(20, height-30, 1, 10, 30);//fftObj.fft.specSize()/3
   
 }
 

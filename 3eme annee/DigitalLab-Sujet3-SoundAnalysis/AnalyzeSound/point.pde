@@ -28,7 +28,6 @@ class PointObject
   
   void run()
   {
-    updateY();
     display();
   }
   
